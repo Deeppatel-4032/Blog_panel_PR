@@ -12,7 +12,7 @@ const upload = require("../middlewares/multer_middlere.js");
 
 //dashbord default path
 router.get("/", userAuth, con.userDefaultCon);
-router.get("/userProfile", userAuth, con.userProfileCon)
+
 
 //register path
 router.get("/registerForm", regCon.registerForm);
@@ -22,15 +22,18 @@ router.post("/register", upload.single("userPath"), regCon.registerCon);
 router.get("/logInForm", loginCon.loginFormCon);
 router.post("/login", passport.authenticate('local', { failureRedirect: '/loginForm' }), loginCon.loginCon);
 
+//user profile
+router.get("/userProfile", userAuth, con.userProfileCon);
+
 //logout path
 router.get("/logOut", loginCon.logOutCon);
 
 //blogAd
-router.get("/blog_Add",blogCon.blogShowCon);
+router.get("/blog_Add", userAuth, blogCon.blogShowCon);
 router.post("/blogShow", upload.single("imgPath") ,blogCon.blogDataCon);
 
 //myBlog
-router.get("/myBlog", myBlog.myBlogShowCon);
+router.get("/myBlog", userAuth, myBlog.myBlogShowCon);
 
 // myBlogEdit
 router.get("/my_blogEdit/:id", myBlog.myBlogEaditCon);
@@ -38,6 +41,5 @@ router.post("/my_BlogUpdate/:id", upload.single("imgPath"),myBlog.myBlogUpdateCo
 
 // myBlogDelete
 router.get("/my_BlogDelete/:id", myBlog.myBlogDeleteCon);
-
 
 module.exports = router;

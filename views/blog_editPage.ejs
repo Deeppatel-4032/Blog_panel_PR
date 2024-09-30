@@ -12,11 +12,11 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center pt-5 mt-5">Create a Blog Post</h1>
+        <h1 class="text-center pt-5 mt-5">Edit Blog Post</h1>
 
         <!-- Blog Form -->
         <div style="width: 500px;" class="mx-auto register-container">
-            <form action="/my_BlogUpdate/<%= singleRecEdit_id%>" method="post" class="mb-5" enctype="multipart/form-data">
+            <form action="/my_BlogUpdate/<%= singleRecEdit._id %>" method="post" class="mb-5" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="imgPath" class="form-label">Image URL :</label>
                     <input type="file" class="form-control" id="imgPath" name="imgPath" value="<%= singleRecEdit.imgPath %>" placeholder="Enter image URL"
@@ -41,13 +41,21 @@
                
                 <div class="mb-3">
                     <label for="description" class="form-label">Description :</label>
-                    <textarea class="form-control" id="description" name="description" value="<%= singleRecEdit.description %>" rows="10"
+                    <textarea class="form-control" id="description" name="description" value="<%= singleRecEdit.description %>" rows="5"
                         placeholder="Enter blog description" required></textarea>
                 </div>
-
-                <button type="submit" class="btn btn-primary">
-                    <a href="" style="text-decoration: none; color: #fff;">Edit Blog</a>
-                </button>
+                <div class="d-flex justify-content-around">
+                    <button type="submit" class="btn btn-primary">
+                        <div>
+                            <a href="/myBlog" class="mx-4" style="text-decoration: none; color: #fff;">Edit Blog</a>
+                        </div>
+                    </button>
+                    <button type="submit" class="btn btn-primary d-flex">
+                        <div>
+                            <a href="/" class="mx-4" style="text-decoration: none; color: #fff;">Home Page</a>
+                        </div>
+                    </button>
+                </div>
             </form>
         </div>
     </div>

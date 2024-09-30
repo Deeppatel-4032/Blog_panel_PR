@@ -1,4 +1,4 @@
-const blog_model = require("../models/bolg_model");
+const blog_model = require("../models/blog_model.js");
 const fs = require("fs");
 
 const myBlogShowCon = async  (req, res) => {
@@ -77,14 +77,10 @@ const myBlogDeleteCon = async (req, res) => {
 
     const { id } = req.params;
 
-    const deleteData = await blog_model.findOne({ _id : id });
+    const deleteData = await blog_model.deleteOne({ _id : id });
 
-    if(deleteData.imgPath){
-        fs.unlinkSync(deleteData.imgPath);
-    }
-
-    deleteData.remove();
-
+    console.log(deleteData, "deleteData");
+    
     res.redirect("/myBlog");
     
 }
