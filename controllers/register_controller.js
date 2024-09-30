@@ -15,6 +15,7 @@ const registerCon = async (req, res) => {
             const user = new admin_model({
                 userName : req.body.userName,
                 email : req.body.email,
+                userPath : req.file.path,
                 password : hashPass,
             })
 

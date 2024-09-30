@@ -9,7 +9,7 @@ const loginCon = (req, res) => {
 }
 
 const logOutCon = (req, res, next) => {
-    
+  
   res.logout((err) => {
     if (err) {
          next();
