@@ -29,14 +29,14 @@ router.get("/userProfile", userAuth, con.userProfileCon);
 router.get("/logOut", loginCon.logOutCon);
 
 //blogAd
-router.get("/blog_Add", userAuth, blogCon.blogShowCon);
+router.get("/blog_view", userAuth, blogCon.blogShowCon);
 router.post("/blogShow", upload.single("imgPath") ,blogCon.blogDataCon);
 
 //myBlog
 router.get("/myBlog", userAuth, myBlog.myBlogShowCon);
 
 // myBlogEdit
-router.get("/my_blogEdit/:id", myBlog.myBlogEaditCon);
+router.get("/my_BlogEdit/:id", myBlog.myBlogEaditCon);
 router.post("/my_BlogUpdate/:id", upload.single("imgPath"),myBlog.myBlogUpdateCon);
 
 // myBlogDelete

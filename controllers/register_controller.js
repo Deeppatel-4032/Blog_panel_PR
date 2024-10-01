@@ -16,6 +16,7 @@ const registerCon = async (req, res) => {
                 userName : req.body.userName,
                 email : req.body.email,
                 userPath : req.file.path,
+                role : req.body.role,
                 password : hashPass,
             })
 

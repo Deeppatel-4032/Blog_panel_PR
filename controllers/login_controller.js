@@ -10,7 +10,7 @@ const loginCon = (req, res) => {
 
 const logOutCon = (req, res, next) => {
   
-  res.logout((err) => {
+  req.logout((err) => {
     if (err) {
          next();
     }

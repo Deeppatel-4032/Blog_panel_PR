@@ -7,7 +7,14 @@ const blogShowCon = async  (req, res) => {
     let blogData = await blog_model.find({});
 
     console.log("blogData", blogData);
-    res.render('blog_Add', { blogData });
+    res.render('blog_view',
+        { 
+            userPath : req.user.userPath,
+            userName : req.user.userName,
+            email : req.user.email,
+            role : req.user.role,
+            blogData : blogData 
+        });
 }
 
 const blogDataCon = async (req, res) => {
@@ -25,7 +32,7 @@ const blogDataCon = async (req, res) => {
     try {
         const newBlog = await addBlogData.save();
         console.log("newBlog", newBlog);
-        res.redirect('/blog_Add');
+        res.redirect('/blog_view');
     } catch (error) {
         console.log(error);
     }

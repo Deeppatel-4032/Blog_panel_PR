@@ -17,6 +17,11 @@ const userSchema = mongoose.Schema({
     userPath : {
         type : String,
         required : true
+    },
+    role : {
+        type : String,
+        default : "user",
+        required : true
     }
 })
 

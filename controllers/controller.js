@@ -7,6 +7,7 @@ const userDefaultCon = (req, res) => {
             userPath : req.user.userPath,
             userName : req.user.userName,
             email : req.user.email,
+            role : req.user.role,
         });
     } else {
         res.redirect("loginForm");
@@ -21,6 +22,7 @@ const userProfileCon = (req, res) => {
             userPath : req.user.userPath,
             userName : req.user.userName,
             email : req.user.email,
+            role : req.user.role
         });
     } else {
         res.redirect("loginForm");
