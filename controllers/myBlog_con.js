@@ -57,17 +57,14 @@ const myBlogUpdateCon = async (req, res) => {
     const { id } = req.params;
 
     const myBlogUpdate = await blog_model.findById({ _id : id });
-  
 
     console.log(myBlogUpdate, "myBlogUpdate");
 
-    if(req.file) {
         fs.unlinkSync(myBlogUpdate.imgPath, (err) => {
             if (err) {
                 console.log(err, "File deleted!");
             }
         });
-    }
 
     myBlogUpdate.imgPath = req.file.path
     myBlogUpdate.title = req.body.title
@@ -89,17 +86,26 @@ const myBlogDeleteCon = async (req, res) => {
 
     const { id } = req.params;
 
+    console.log(id, "id");
+    // fs modele
+
+    const myBlogDelete = await blog_model.findById({ _id : id });
+
+    console.log("myBlogDelete",myBlogDelete);
+
+    fs.unlinkSync(myBlogDelete.imgPath, (err) => {
+        if (err) {
+            console.log(err, "File deleted!");
+        }
+    });
+
+
+
     const deleteData = await blog_model.findByIdAndDelete({ _id : id });
     
     console.log(deleteData, "deleteData");
     
-    if(req.file) {
-        fs.unlinkSync(deleteData.imgPath, (err) => {
-            if (err) {
-                console.log(err, "File deleted!");
-            }
-        });
-    }
+  
     res.redirect("/myBlog");
 }
 
