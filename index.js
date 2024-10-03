@@ -7,7 +7,7 @@ const bodyParser = require("body-parser")
 const Path = path.join(__dirname, "views/");
 const PORT = process.env.PORT || 3012;
 const routers = require("./routes/routes.js");
-const db = require("./db/adminPnal_db.js");
+const db = require("./db/adminPanel_db.js");
 const express_session = require("express-session");
 const passport = require("./middlewares/passport_config.js"); 
 
