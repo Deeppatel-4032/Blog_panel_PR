@@ -1,14 +1,16 @@
 
 const userDefaultCon = (req, res) => {
     
-    if(req.isAuthenticated()) {    
+    if(req.isAuthenticated()) {  
         res.render("index",
         {
             userPath : req.user.userPath,
             userName : req.user.userName,
             email : req.user.email,
             role : req.user.role,
-        });
+            wel : req.flash("wel")
+        }
+    );
     } else {
         res.redirect("loginForm");
     }

@@ -7,7 +7,12 @@ const passport = require("../middlewares/passport_config.js");
 const blogCon = require("../controllers/blog_controller.js");
 const myBlog = require("../controllers/myBlog_con.js");
 const userAuth = require("../middlewares/auth.js");
-const upload = require("../middlewares/multer_middlere.js");
+const upload = require("../middlewares/multer_middlware.js");
+const forgotCon = require("../controllers/forgotPassController.js");
+const changeCon = require("../controllers/ChangePass_Controller.js");
+const addTopic = require("../controllers/add_topic_con.js");
+const addSubTopic = require("../controllers/subTopic_Controller.js");
+
 
 
 //dashbord default path
@@ -41,5 +46,41 @@ router.post("/my_BlogUpdate/:id", upload.single("imgPath"),myBlog.myBlogUpdateCo
 
 // myBlogDelete
 router.get("/my_BlogDelete/:id", myBlog.myBlogDeleteCon);
+
+// change password
+router.get("/changePassForm", userAuth, changeCon.chanePassCon);
+router.post("/changePassword", changeCon.changePasswordCon )
+
+//forgotPass
+router.get("/forgotPassForm", forgotCon.frogotPassConForm);
+router.post("/forgotPassCon", forgotCon.forgotPassowrdCon);
+
+//chack OPT
+router.get("/chackOtpForm/:id", forgotCon.chackOPTConForm);
+router.post("/chack_OTP/:id", forgotCon.chackOPTCon);
+
+//reset Password
+router.get("/resetPassForm/:id", forgotCon.resetPassFormCon);
+router.post("/resetPassword/:id", forgotCon.resetPasswordCon);
+
+// send email page /error page 
+router.get("/sendMailMsg/:id", forgotCon.sendMailMsgCon);
+router.get("/errorPage", forgotCon.errorPageCon);
+
+
+// add topice
+router.get("/add_TopicForm", addTopic.addToPic);
+router.post("/addTopiceCon", addTopic.addTopic_Con);
+
+//delete topice
+router.get("/deleteTopicCon/:id", addTopic.deleteTopic_Con);
+
+//addsubtipics
+router.get("/addSubTopicForm", addSubTopic.addToPicForm);
+router.post("/addSubTopicCon", addSubTopic.addSubTopic_Con);
+
+//delete subTopic
+router.get("/deleteSubTopicCon/:id", addSubTopic.deleteSubTopic_Con);
+
 
 module.exports = router;

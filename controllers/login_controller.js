@@ -4,7 +4,7 @@ const loginFormCon = (req, res) => {
 }
 
 const loginCon = (req, res) => {
-
+  req.flash("wel", "welcome to Home page");
     res.redirect("/")
 }
 

@@ -10,6 +10,7 @@ const routers = require("./routes/routes.js");
 const db = require("./db/adminPanel_db.js");
 const express_session = require("express-session");
 const passport = require("./middlewares/passport_config.js"); 
+const flash = require('connect-flash');
 
 
 app.set("view engine", "ejs");
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(express_session({ secret: 'jay shee ram', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 
 app.use("/", routers);
