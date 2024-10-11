@@ -5,7 +5,7 @@ const myBlogShowCon = async  (req, res) => {
 
     console.log(req.body);
 
-    let myBlogData = await blog_model.find({});
+    let myBlogData = await blog_model.find({ userName: req.user.userName });
 
     console.log("blogData", myBlogData);
     res.render('myBlog', 
@@ -60,13 +60,16 @@ const myBlogUpdateCon = async (req, res) => {
 
     console.log(myBlogUpdate, "myBlogUpdate");
 
-        fs.unlinkSync(myBlogUpdate.imgPath, (err) => {
-            if (err) {
-                console.log(err, "File deleted!");
-            }
-        });
+        if(req.path) {
+            fs.unlinkSync(myBlogUpdate.imgPath, (err) => {
+                if (err) {
+                    console.log(err, "File deleted!");
+                }
+            });
+            //new img upload
+            myBlogUpdate.imgPath = req.file.path 
+        }
 
-    myBlogUpdate.imgPath = req.file.path
     myBlogUpdate.title = req.body.title
     myBlogUpdate.userName = req.body.userName
     myBlogUpdate.date = req.body.date
