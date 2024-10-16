@@ -24,7 +24,7 @@ This project is a **Blog Post Panel** where users can register and log in to cre
 - **Login**: Users can log in using the credentials created during registration.
 - **Session Management**: Users are kept logged in using cookies and sessions. Session handling is done using Express sessions, and user authentication is managed by Passport.js.
 
-### Blog Management:
+### My Blog Management:
 - **Add Blog**: Users can create a new blog post by providing a title, content, and an optional image (uploaded via Multer).
 - **Edit Blog**: Logged-in users can edit the title, content, and image of their own blog posts.
 - **Delete Blog**: Users have the option to delete their own blog posts.
@@ -111,6 +111,12 @@ This project is a **Blog Post Panel** where users can register and log in to cre
 - **BCrypt**: For hashing and securing passwords.
 - **Mongoose**: MongoDB ODM for interacting with the database.
 - **Body-parser**: Middleware for parsing JSON bodies.
+- **nodemailer**:  for sending email
+- **otp-generator**:  for generating otp
+- **connect-flash**:  for flash message
+- **randomstring**:  randomstring generator for refrensh token string 
+
+
 
 
 ## Usage
@@ -125,6 +131,14 @@ from the "Profile" page.
 7. **Logout**: Users can log out from the "Profile" page.
 8. **Upload Image**: Users can upload an image for their blog post from the "Add Blog
 page.
+9. **Send Email**: Users can send email to other users forgot the password.
+10. **Forgot Password**: Users can forgot the password and get the otp in email.
+11. **Reset Password**: Users can reset the password using the otp.
+12. **Flash Message**: Users can see the flash message after login, logout, forgot password,
+reset password, and send email.
+13. **Randomstring**: Users can see the randomstring after send email.
+14. **OTP**: Users can see the otp after forgot password and reset password.
+15. **Refrensh Token**: Users can see the refrensh token after send email.
 
 
 ## File Uploads
