@@ -1,8 +1,11 @@
 const blog_model = require("../models/blog_model.js");
+const comment_model = require("../models/comment_model.js");
 
 const blogShowCon = async  (req, res) => {
-
     console.log(req.body);
+    const commentAdd = await comment_model.find({}).populate("userId");
+
+    console.log("commentAdd", commentAdd);
 
     let blogData = await blog_model.find({});
 
@@ -13,7 +16,8 @@ const blogShowCon = async  (req, res) => {
             userName : req.user.userName,
             email : req.user.email,
             role : req.user.role,
-            blogData : blogData 
+            blogData : blogData,
+            commentAdd : commentAdd
         });
 }
 
@@ -39,4 +43,29 @@ const blogDataCon = async (req, res) => {
 }
 
 
-module.exports = { blogShowCon, blogDataCon};
+const addComentsCon = async (req, res) => {
+    try {
+      // Ensure blogId is coming from the form submission
+      const commentAdd = new comment_model({
+        comment: req.body.comment,
+        userId: req.user._id,  // Assuming user is logged in
+        blogId: req.body.blogId // blogId is now included
+      });
+  
+      const newComment = await commentAdd.save();
+      console.log("newComment", newComment);
+  
+      // Redirect to the blog view after saving the comment
+      res.redirect('/blog_view');
+  
+      // Fetch comments and populate blogId for further processing
+      const getCommentsData = await comment_model.find({}).populate("blogId");
+      console.log("getCommentsData", getCommentsData);
+  
+    } catch (error) {
+      console.log("Error saving comment:", error);
+    }
+  };
+  
+
+module.exports = { blogShowCon, blogDataCon, addComentsCon};

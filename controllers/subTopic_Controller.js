@@ -1,40 +1,72 @@
 const subTopic_model = require("../models/subTopic_model");
+const topic_model = require("../models/topic_model.js")
 
-const addToPicForm = async (req, res) => {
+const addSubToPicForm = async (req, res) => {
 
-    const subTopic = await subTopic_model.find({});
+    try {
+        const topics = await topic_model.find({});
+        console.log("addSubToPicForm topics", topics);
 
-    console.log("addToPicForm", subTopic);
+        const subTopics = await subTopic_model.find({}).populate("topicId");
+        console.log("addSubToPicForm subTopics", subTopics);
 
-    res.render("subTopic", { subTopic });
+        res.render("subTopic", { topics, subTopics });
+    } catch (error) {
+        console.log("Error subtopics:", error);
+    }
 }
+
 
 const addSubTopic_Con = async (req, res) => {
+    try {
+        const { topicName, subTopicName } = req.body;
+        
+        const topic = await topic_model.findById(topicName);
+        console.log("addSubTopic_Con topic", topic);
+        
+        console.log("Topic ID:>>>>>>>>", topic._id);
+        const subTopic = new subTopic_model({
+            subTopicName: subTopicName,
+            topicId : topic._id,    
 
-    const subTopic = new subTopic_model({
-        subTopicName : req.body.subTopicName,
-        topic : req.body.topic
-    })
-
-    try{
+        });
         const newSubTopic = await subTopic.save();
-        console.log(newSubTopic);
-        res.redirect("/add_TopicForm");
-    }catch(error){
-        console.log(error);
-    }
-}
+        console.log("New SubTopic:", newSubTopic);
 
+        res.redirect("/show_TopicseForm");
+
+        
+    } catch (error) {
+        
+        console.log("Error saving addSubTopic_Cona:", error);
+    }
+};
+
+const showTopics = async (req, res) => {
+   try {
+     const topics = await topic_model.find({});
+     console.log("addSubTopic_Con topics", topics);
+ 
+     const subTopics = await subTopic_model.find({}).populate("topicId");
+     console.log("addSubTopic_Con subTopics", subTopics);
+ 
+     res.render("show_Topicse", {topics, subTopics});
+   } catch (error) {
+     console.log("Error subtopics:", error);
+   }
+}
 const deleteSubTopic_Con = async (req, res) => {
+    const { id } = req.params;  
+    try {
+        const deleteSubTopic = await subTopic_model.deleteOne({ _id: id });
 
-    const { id } = req.params;
+        console.log("Deleted SubTopic:", deleteSubTopic);
 
-    try{
-        const deleteSubTopic = await subTopic_model.deleteOne({ _id : id });
-        console.log("deleteSubTopic_Con", deleteSubTopic);
-        res.redirect("/add_TopicForm");
-    }catch(error){
-        console.log("deleteSubTopic error found", error);
+        res.redirect("/show_TopicseForm"); 
+    } catch (error) {
+        
+        console.log("Error deleting subtopic:", error);
     }
-}
-module.exports = { addToPicForm, addSubTopic_Con, deleteSubTopic_Con }
+};
+
+module.exports = { addSubToPicForm, addSubTopic_Con, showTopics, deleteSubTopic_Con };

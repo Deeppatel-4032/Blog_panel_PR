@@ -14,7 +14,6 @@ const addTopic = require("../controllers/add_topic_con.js");
 const addSubTopic = require("../controllers/subTopic_Controller.js");
 
 
-
 //dashbord default path
 router.get("/", userAuth, con.userDefaultCon);
 
@@ -36,6 +35,9 @@ router.get("/logOut", loginCon.logOutCon);
 //blogAd
 router.get("/blog_view", userAuth, blogCon.blogShowCon);
 router.post("/blogShow", upload.single("imgPath") ,blogCon.blogDataCon);
+
+//add comments
+router.post("/addCommentCon", blogCon.addComentsCon);   
 
 //myBlog
 router.get("/myBlog", userAuth, myBlog.myBlogShowCon);
@@ -72,15 +74,18 @@ router.get("/errorPage", forgotCon.errorPageCon);
 router.get("/add_TopicForm", addTopic.addToPic);
 router.post("/addTopiceCon", addTopic.addTopic_Con);
 
-//delete topice
-router.get("/deleteTopicCon/:id", addTopic.deleteTopic_Con);
 
 //addsubtipics
-router.get("/addSubTopicForm", addSubTopic.addToPicForm);
+router.get("/addSubTopicForm", addSubTopic.addSubToPicForm);
 router.post("/addSubTopicCon", addSubTopic.addSubTopic_Con);
 
-//delete subTopic
-router.get("/deleteSubTopicCon/:id", addSubTopic.deleteSubTopic_Con);
+// delete subtopic
+router.get("/deleteSubTopicForm/:id", addSubTopic.deleteSubTopic_Con);
+
+// show topic and topics
+router.get("/show_TopicseForm", addSubTopic.showTopics);
+
+
 
 
 module.exports = router;

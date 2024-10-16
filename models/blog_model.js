@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const blogSchema = mongoose.Schema({
+    userName : {
+        type : String,
+        required : true
+    },
     title : {
         type : String,
         required : true
@@ -13,14 +17,16 @@ const blogSchema = mongoose.Schema({
         type : String,
         required : true
     },
-    userName : {
-        type : String,
+    userId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "users",
         required : true
     },
     date : {
         type : Date,
         default : Date.now
     }
+
 })
 
 const blog_model = mongoose.model("blogs", blogSchema)

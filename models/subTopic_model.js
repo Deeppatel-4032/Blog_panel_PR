@@ -2,14 +2,15 @@ const mongoose = require("mongoose");
 
 const subTopicSchema = mongoose.Schema({
     subTopicName : {
-        type : String,
+        type: String,
+        required: true,
     },
-    topic : {
+    topicId : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "topics",
-        required : true
-    }
-})
+        required : true,
+    },
+});
 
 const subTopic_model = mongoose.model("subTopics", subTopicSchema);
 

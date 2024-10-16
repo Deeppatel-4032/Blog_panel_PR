@@ -9,4 +9,5 @@ const topicSchema = mongoose.Schema({
 
 const topic_model = mongoose.model("topics", topicSchema);
 
+
 module.exports = topic_model;

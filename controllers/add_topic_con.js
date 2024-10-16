@@ -2,23 +2,23 @@ const topic_model = require("../models/topic_model.js");
 
 
 const addToPic =  async (req, res) => {
-
-    const add_Topics = await topic_model.find({});
-
-    console.log("add_Topics", add_Topics);
     
+    const topic = await topic_model.find({});
+
+    console.log("topicAdd", topic);
     
-    res.render("topices_Page", { add_Topics });
+    res.render("topices_Page", {topic});
 }
 
 const addTopic_Con = async (req, res) => {
 
-    const topic = new topic_model({
-        topicName : req.body.topicName
+    const newTopicAdd = new topic_model({
+        topicName : req.body.topicName,
+        userId : req.user._id
     })
 
     try{
-        const newTopic = await topic.save();
+        const newTopic = await newTopicAdd.save();
         console.log("newTopic", newTopic);
         res.redirect("/add_TopicForm");
     }catch(error){
@@ -27,17 +27,4 @@ const addTopic_Con = async (req, res) => {
 }
 
 
-const deleteTopic_Con = async (req, res) => {
-
-    const { id } = req.params;
-
-    try{
-        const deleteTopic = await topic_model.deleteOne({ _id : id });
-        console.log("deleteTopic", deleteTopic);
-        res.redirect("/add_TopicForm");
-    }catch(error){
-        console.log("deleteTopic error found", error);
-    }
-}
-
-module.exports = { addToPic, addTopic_Con, deleteTopic_Con }
+module.exports = { addToPic, addTopic_Con }

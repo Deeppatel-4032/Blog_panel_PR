@@ -55,7 +55,7 @@ This project is a **Blog Post Panel** where users can register and log in to cre
 3. **Create a MongoDB database**:
 - Create a new MongoDB database or use an existing one.
 - Note down the connection string (e.g., `mongodb://localhost:27017/`
-- Update the `config/database.js` file with your MongoDB connection string.
+- Update the `db/adminPanel_db` file with your MongoDB connection string.
 
 4. **Run the application**:
 ```bash
