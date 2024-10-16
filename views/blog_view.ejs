@@ -28,9 +28,6 @@
       margin-top: 10px;
     }
 
-    .modal {
-      margin-top: 300px;
-    }
   </style>
 </head>
 
@@ -158,7 +155,6 @@
         <h2 class="text-center fs-1">Blogs Post</h2>
         <div class="row">
           <div class="mx-auto" style="width: 1000px;">
-            <% if (blogData.length > 0) { %>
               <% blogData.forEach(post => { %>
                 <div class="card mb-4" style="width: 100%; object-fit: cover;">
                   <img src="<%= post.imgPath %>" alt="<%= post.title %>" width="100%" height="500px">
@@ -193,9 +189,6 @@
                   </div>
                 </div>
               <% }) %>
-            <% } else { %>
-              <p class="text-center">No blog posts available. Start by adding one!</p>
-            <% } %>
           </div>
         </div>
       </div>
