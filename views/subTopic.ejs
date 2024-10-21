@@ -69,31 +69,6 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
-      
-        <!-- View section -->
-       <div class="view-section">
-          <h1 class="mb-4 text-center pt-5">View Topics</h1>
-          <div class="d-flex justify-content-center">
-            <table class="table table-striped bg-light" style="width: 500px;">
-              <thead class="bg-dark text-white">
-                <tr>
-                  <th scope="col">Topics Name</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% subTopics.forEach((subtopic) => { %>
-                  <tr>
-                    <td><%= subtopic.subTopicName %></td>
-                    <td>
-                      <a href="deleteSubTopicCon/<%= subtopic._id %>" class="btn btn-danger">Delete</a>
-                    </td>
-                  </tr>
-                <% }) %>
-              </tbody>
-            </table>
-          </div>  
-        </div>
       </div>
       
 

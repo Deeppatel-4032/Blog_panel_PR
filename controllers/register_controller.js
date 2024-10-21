@@ -3,7 +3,8 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const registerForm = (req, res) => {
-    res.render("register")
+    req.flash("registerMag", "welcome to register Form");
+    res.render("register", {registerMag : req.flash("registerMag")})
 }
 
 const registerCon = async (req, res) => {

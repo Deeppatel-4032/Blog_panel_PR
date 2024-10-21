@@ -2,6 +2,7 @@ const blog_model = require("../models/blog_model.js");
 const comment_model = require("../models/comment_model.js");
 
 const blogShowCon = async  (req, res) => {
+  req.flash("allBlog", "welcome to All blogs pages");
     console.log(req.body);
     const commentAdd = await comment_model.find({}).populate("userId");
 
@@ -17,6 +18,7 @@ const blogShowCon = async  (req, res) => {
             email : req.user.email,
             role : req.user.role,
             blogData : blogData,
+            allBlog : req.flash("allBlog"),
             commentAdd : commentAdd
         });
 }

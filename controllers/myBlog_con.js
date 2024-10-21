@@ -5,16 +5,19 @@ const myBlogShowCon = async  (req, res) => {
 
     console.log(req.body);
 
+    req.flash("myBlogMsg", "Welcome to your post blogs")
+
     let myBlogData = await blog_model.find({ userName: req.user.userName });
 
-    console.log("blogData", myBlogData);
+    console.log("myblogData", myBlogData);
     res.render('myBlog', 
         { 
             userPath : req.user.userPath,
             userName : req.user.userName,
             email : req.user.email,
             role : req.user.role,
-            myBlogData : myBlogData 
+            myBlogData : myBlogData,
+            myBlogMsg : req.flash("myBlogMsg")
         });
 }
 

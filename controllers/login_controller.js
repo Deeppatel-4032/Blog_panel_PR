@@ -1,10 +1,11 @@
 
 const loginFormCon = (req, res) => {
-    res.render("login");
+  req.flash("loginMsg", "welcome to Login Form");
+  res.render("login", {loginMsg : req.flash("loginMsg")});
 }
 
 const loginCon = (req, res) => {
-  req.flash("wel", "welcome to Home page");
+ 
     res.redirect("/")
 }
 

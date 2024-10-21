@@ -1,6 +1,6 @@
 
 const userDefaultCon = (req, res) => {
-    
+    req.flash("wel", "welcome to Home page");
     if(req.isAuthenticated()) {  
         res.render("index",
         {
